@@ -507,11 +507,19 @@
         align-items: center;
         gap: 8px;
         border-radius: 999px;
-        border: 1px solid #334155;
-        background: #0f172a;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: rgba(15, 23, 42, 0.58);
         padding: 8px 12px;
         cursor: pointer;
-        box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.24);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      #ps-pill:hover {
+        background: rgba(15, 23, 42, 0.72);
+        border-color: rgba(148, 163, 184, 0.5);
+        box-shadow: 0 10px 22px rgba(0,0,0,0.3);
       }
       #ps-dot {
         width: 10px;
@@ -530,12 +538,14 @@
         width: 360px;
         max-width: min(360px, 92vw);
         margin-top: 8px;
-        background: rgba(15,23,42,0.97);
-        border: 1px solid #334155;
+        background: rgba(15, 23, 42, 0.84);
+        border: 1px solid rgba(71, 85, 105, 0.65);
         border-radius: 12px;
         box-shadow: 0 16px 34px rgba(0,0,0,0.45);
         padding: 12px;
         display: none;
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
       }
       #ps-root[data-expanded="true"] #ps-panel {
         display: block;
