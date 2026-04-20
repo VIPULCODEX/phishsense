@@ -4,8 +4,8 @@
 // @version      1.1.0
 // @description  Realtime phishing/scam risk scanner for Tampermonkey/Greasemonkey
 // @author       VIPULCODEX
-// @updateURL    https://raw.githubusercontent.com/VIPULCODEX/phishsense/main/project/userscript/phish-sense.user.js
-// @downloadURL  https://raw.githubusercontent.com/VIPULCODEX/phishsense/main/project/userscript/phish-sense.user.js
+// @updateURL    https://raw.githubusercontent.com/VIPULCODEX/phishsense/main/userscript/phish-sense.user.js
+// @downloadURL  https://raw.githubusercontent.com/VIPULCODEX/phishsense/main/userscript/phish-sense.user.js
 // @match        *://*/*
 // @run-at       document-idle
 // @grant        none
