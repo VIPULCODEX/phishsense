@@ -19,3 +19,6 @@ model/*.pkl
 Thumbs.db
 .vscode/
 
+# Local report (do not push)
+report.txt
+
