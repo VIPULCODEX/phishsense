@@ -1,65 +1,83 @@
 ﻿# Phish Sense: Context-Aware Scam Detection System
 
-Lightweight hybrid NLP mini-project for low-resource machines (CPU-friendly).
+Phish Sense is now available in two modes:
+- Streamlit web app (model + rule engine)
+- Browser-side realtime scanner (Chrome extension + Tampermonkey userscript)
 
-## Features
-- Multi-class classification: `phishing`, `otp_scam`, `job_scam`, `lottery`, `safe`
-- Risk score (0-100) using hybrid fusion:
-  - `Final Score = 0.6 * ML Score + 0.4 * Rule Score`
-- Explainability via suspicious word highlighting + reason list
-- URL extraction and safety flagging
-- Streamlit UI
+## Key Features
+- Multi-class detection labels: `phishing`, `otp_scam`, `job_scam`, `lottery`, `safe`
+- Risk score (0-100)
+- Explainable reasons and highlighted suspicious patterns
+- URL safety checks (shorteners, suspicious domains, obfuscated links)
+- Realtime page assessment for dynamic websites
 
 ## Project Structure
 ```text
 project/
+|-- app.py
+|-- train.py
+|-- inference.py
+|-- requirements.txt
 |-- data/
 |   `-- dataset.csv
 |-- model/
-|   `-- model.pkl   (generated after training)
+|   `-- model.pkl
 |-- utils/
 |   |-- preprocessing.py
 |   |-- rules.py
 |   `-- url_checker.py
-|-- train.py
-|-- inference.py
-|-- app.py
-|-- sample_outputs.json
-`-- requirements.txt
+|-- browser-extension/
+|   |-- manifest.json
+|   |-- background.js
+|   |-- content.js
+|   |-- popup.html
+|   |-- popup.css
+|   |-- popup.js
+|   `-- README.md
+`-- userscript/
+    `-- phish-sense.user.js
 ```
 
-## Setup
+## A) Run ML + Rule Engine (Streamlit)
 ```bash
-pip install -r requirements.txt
+python -m venv .venv
+.\\.venv\\Scripts\\python.exe -m pip install --upgrade pip
+.\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt
+
+.\\.venv\\Scripts\\python.exe train.py
+.\\.venv\\Scripts\\python.exe -m streamlit run app.py
 ```
 
-## Train
+## B) Chrome Extension (Realtime)
+1. Open `chrome://extensions/`
+2. Enable `Developer mode`
+3. Click `Load unpacked`
+4. Select `project/browser-extension`
+5. Browse normally: risk widget appears on pages automatically
+
+## C) Tampermonkey / GreasyFork-style Userscript
+1. Install Tampermonkey extension
+2. Create new script and paste content of:
+   - `project/userscript/phish-sense.user.js`
+3. Save and refresh target pages
+
+## CLI Inference Example
 ```bash
-python train.py
+.\\.venv\\Scripts\\python.exe inference.py --text "Urgent verify account now at http://bit.ly/abc123"
 ```
 
-## Inference (CLI)
-```bash
-python inference.py --text "Urgent! Verify your SBI account now at http://bit.ly/abc123"
-```
-
-## Run UI
-```bash
-streamlit run app.py
-```
-
-## Sample Output Format
+## Sample JSON Output
 ```json
 {
   "prediction": "phishing",
   "risk_score": 82,
   "reasons": ["Urgency detected", "Suspicious URL found"],
-  "highlighted_words": ["urgent", "verify", "http://bit.ly/abc123"],
+  "highlighted_words": ["urgent", "verify"],
   "url_flag": "Suspicious"
 }
 ```
 
 ## Notes
-- Training set size: 293 labeled samples
-- Model: TF-IDF + Logistic Regression
-- Built to stay lightweight and fast on CPU-only environments
+- Dataset size: 293 labeled samples
+- Lightweight by design for low-resource machines
+- Browser scanner is heuristic/context-driven and should be used with standard browser security protections

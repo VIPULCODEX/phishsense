@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phish Sense</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="card">
+      <header class="header">
+        <h1>Phish Sense</h1>
+        <label class="switch">
+          <input type="checkbox" id="enabledToggle" checked />
+          <span class="slider"></span>
+        </label>
+      </header>
+
+      <p id="domain" class="domain">Loading...</p>
+
+      <section class="risk-block">
+        <div class="risk-top">
+          <span>Risk</span>
+          <strong id="riskValue">--%</strong>
+        </div>
+        <div class="progress-wrap">
+          <div id="riskBar" class="progress-bar"></div>
+        </div>
+      </section>
+
+      <p id="prediction" class="prediction">Prediction: --</p>
+      <p id="urlFlag" class="url-flag">URL Flag: --</p>
+
+      <h2>Reasons</h2>
+      <ul id="reasons"></ul>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
+
