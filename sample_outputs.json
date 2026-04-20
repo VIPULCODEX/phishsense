@@ -1,0 +1,30 @@
+[
+  {
+    "input": "Urgent: Verify your bank account now at http://bit.ly/ab12x",
+    "prediction": "phishing",
+    "risk_score": 88,
+    "reasons": [
+      "Urgency detected",
+      "Account verification pressure detected",
+      "Suspicious URL found",
+      "Shortened link detected"
+    ],
+    "highlighted_words": [
+      "urgent",
+      "verify",
+      "account",
+      "http://bit.ly/ab12x"
+    ],
+    "url_flag": "Suspicious"
+  },
+  {
+    "input": "Let's meet tomorrow at 5pm and discuss the assignment.",
+    "prediction": "safe",
+    "risk_score": 9,
+    "reasons": [
+      "No major scam indicators found"
+    ],
+    "highlighted_words": [],
+    "url_flag": "Safe"
+  }
+]
